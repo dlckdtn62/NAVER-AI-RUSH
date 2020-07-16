@@ -5,6 +5,7 @@ import typing
 from typing import Dict, List
 import os
 from argparse import ArgumentParser
+import matplotlib.pyplot as plt
 
 from torch import nn, optim
 import torch
@@ -137,12 +138,14 @@ if __name__ == '__main__':
     parser.add_argument('--mode', default='train')
     parser.add_argument('--pause', default=0)
     args = parser.parse_args()
-    if args.pause:
-        task = HateSpeech()
-        model = BaseLine(256, 3, 0.2, task.max_vocab_indexes['syllable_contents'], 384)
-        model.to("cuda")
-        bind_model(model)
-        nsml.paused(scope=locals())
-    if args.mode == 'train':
-        trainer = Trainer(device='cuda')
-        trainer.train()
+    # if args.pause:
+    #     task = HateSpeech()
+    #     model = BaseLine(256, 3, 0.2, task.max_vocab_indexes['syllable_contents'], 384)
+    #     model.to("cuda")
+    #     bind_model(model)
+    #     nsml.paused(scope=locals())
+    # if args.mode == 'train':
+    #     trainer = Trainer(device='cuda')
+    #     trainer.train()
+    task = HateSpeech()
+    print(task)

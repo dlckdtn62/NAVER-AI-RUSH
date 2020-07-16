@@ -64,11 +64,12 @@ class HateSpeech(object):
         else:
             vocab = Vocab(Counter())
             field.use_vocab = False
-        field.vocab = vocab
+            field.vocab = vocab
 
         return field
 
     def load_fields(self, path) -> Dict[str, Field]:
         loaded_dict = json.loads(open(path).read())
         max_vocab_indexes = {k: v['max_vocab_index'] for k, v in loaded_dict.items()}
+        ##sylla, eval = 6014, 2
         return {k: self.dict_to_field(v) for k, v in loaded_dict.items()}, max_vocab_indexes
